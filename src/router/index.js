@@ -1,10 +1,10 @@
 import {
   createRouter,
-  createWebHistory
+  createWebHashHistory,
 } from 'vue-router'
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes: [{
       path: '/',
       redirect: '/home'
@@ -24,6 +24,13 @@ const router = createRouter({
     {
       path: '/message',
       component: () => import("@/views/message/message.vue")
+    },
+    {
+      path: '/city',
+      component: () => import("@/views/city/city.vue"),
+      meta: {
+        hideTabBar: true
+      }
     }
   ]
 })
