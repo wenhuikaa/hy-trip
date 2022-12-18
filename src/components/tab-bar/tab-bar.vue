@@ -17,9 +17,17 @@
 <script setup>
 import tabbarData from '@/assets/data/tabbar'
 import { getAssetUrl } from '@/utils/load_assets'
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
 
+//监听路由改变时，找到对应的索引，设置currentIndex
+const route = useRoute()
 const currentIndex = ref(0)
+watch(route, (newValue) => {
+    const index = tabbarData.findIndex(item => item.path === newValue.path)
+    if (index === -1) return
+    currentIndex.value = index
+})
 
 </script>
 
